@@ -36,6 +36,7 @@ variable "location" {
 variable "tags" {
   description = "Tags to apply to your resources"
   type        = map(string)
+  default = {}
 }
 
 variable "resource_group_name" {
@@ -53,7 +54,7 @@ variable "subnet_id" {
 }
 
 variable "key_vault_id" {
-  description = "Provide a key vault ID to store information and get certificates."
+  description = "Provide a key vault ID to store information and get certificates. A user-assigned and system-assigned policies will be created."
   type        = string
 }
 
@@ -70,7 +71,7 @@ variable "publisher" {
 }
 
 variable "sku_name" {
-  description = "(Required) sku_name is a string consisting of two parts separated by an underscore(_). The first part is the name, valid values include: Consumption, Developer, Basic, Standard and Premium. The second part is the capacity (e.g. the number of deployed units of the sku), which must be a positive integer (e.g. Developer_1)."
+  description = "sku_name is a string consisting of two parts separated by an underscore(_). The first part is the name, valid values include: Consumption, Developer, Basic, Standard and Premium. The second part is the capacity (e.g. the number of deployed units of the sku), which must be a positive integer (e.g. Developer_1)."
   type        = string
   default     = "Developer"
   validation {
@@ -112,6 +113,7 @@ variable "apim_custom_domains" {
     host_name    = string
     key_vault_id = string
   }))
+  default = {}
 }
 
 variable "apis" {

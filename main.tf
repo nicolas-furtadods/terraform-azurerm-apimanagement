@@ -60,6 +60,18 @@ resource "azurerm_api_management_custom_domain" "domains" {
     }
   }
 
+  dynamic "portal" {
+    for_each = {
+      for k, v in var.apim_custom_domains : k => v if v.domain_key == "portal"
+    }
+    iterator = domain
+    content {
+      host_name    = domain.value.host_name
+      key_vault_id = domain.value.key_vault_id
+    }
+  }
+
+
   dynamic "management" {
     for_each = {
       for k, v in var.apim_custom_domains : k => v if v.domain_key == "management"
